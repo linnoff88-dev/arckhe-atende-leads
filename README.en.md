@@ -162,4 +162,4 @@ Later: automatic voice agent · reply to WhatsApp from the panel · draggable fu
 
 ## License
 
-MIT. Open and free content from [ARCKHÉ.CLUB](https://linnoff88-dev.github.io/arckhe-ai).
+MIT. Open and free content from [ARCKHÉ.AI](https://linnoff88-dev.github.io/arckhe-ai).

@@ -162,4 +162,4 @@ Después: agente de voz automático · responder WhatsApp desde el panel · embu
 
 ## Licencia
 
-MIT. Contenido abierto y gratuito de [ARCKHÉ.CLUB](https://linnoff88-dev.github.io/arckhe-ai).
+MIT. Contenido abierto y gratuito de [ARCKHÉ.AI](https://linnoff88-dev.github.io/arckhe-ai).

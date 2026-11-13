@@ -183,4 +183,4 @@ Depois: agente de voz automático · responder o WhatsApp pelo painel · funil a
 
 ## Licença
 
-MIT. Conteúdo aberto e gratuito do [ARCKHÉ.CLUB](https://linnoff88-dev.github.io/arckhe-ai).
+MIT. Conteúdo aberto e gratuito do [ARCKHÉ.AI](https://linnoff88-dev.github.io/arckhe-ai).
