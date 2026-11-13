@@ -1,6 +1,6 @@
 # atende-leads
 
-[![Atende Leads](guia/assets/banner-es.jpg)](https://~~ARCKHÉTDS~~.github.io/atende-leads/guia/es/)
+[![Atende Leads](guia/assets/banner-es.jpg)](https://inematds.github.io/atende-leads/guia/es/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,9 +10,9 @@ Un sistema de código abierto que atiende a los leads que llegan por WhatsApp (y
 
 ## 📖 Guía de uso
 
-Guía completa (landing + paso a paso): **https://~~ARCKHÉTDS~~.github.io/atende-leads/guia/es/**
+Guía completa (landing + paso a paso): **https://inematds.github.io/atende-leads/guia/es/**
 
-🎬 Video explicativo (2 min 37 s, en portugués): **https://~~ARCKHÉTDS~~.github.io/atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
+🎬 Video explicativo (2 min 37 s, en portugués): **https://inematds.github.io/atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
 
 Atención de **leads por WhatsApp** con un agente que responde, califica y asigna el lead al **colaborador disponible** por Telegram, con todos los datos y un botón para llamar. Python 3 solo con la biblioteca estándar, estado en SQLite, Docker para VPS. Código abierto, versión `1.11.8`.
 
@@ -37,7 +37,7 @@ Contrato completo: [`docs/ESPECIFICACAO.md`](docs/ESPECIFICACAO.md).
 
 Quién hace qué: 🧠 el dueño/gerente · ⚙️ el sistema · 🤖 el agente.
 
-1. 🧠 **Instalar en la VPS:** `git clone https://github.com/~~ARCKHÉTDS~~/atende-leads /opt/atende-leads && cd /opt/atende-leads && ./instalar-vps.sh` (pregunta el nombre, dominio y Telegram; genera secretos, `.env` y `dados/negocio.json`; inicia Docker).
+1. 🧠 **Instalar en la VPS:** `git clone https://github.com/inematds/atende-leads /opt/atende-leads && cd /opt/atende-leads && ./instalar-vps.sh` (pregunta el nombre, dominio y Telegram; genera secretos, `.env` y `dados/negocio.json`; inicia Docker).
 2. 🧠 **Conectar WhatsApp:** crear el túnel `ssh -L 8081:127.0.0.1:8081 usuario@vps`, abrir `http://localhost:8081/manager`, crear la instancia y escanear el código QR con el número de atención (usa un número solo para esto).
 3. 🧠 **Registrar** en `/gestor` → Registros: equipo (nombre, teléfono, código), productos con palabras y precio, horarios y plazos; → **Base de conocimiento**: información del negocio, preguntas frecuentes y el cerebro (y **Probar** preguntas como si fueras un cliente).
 4. 🧠 **El equipo entra al bot:** cada colaborador envía `/entrar <código>` al chat privado del bot y toca 🟢 Disponible.
@@ -68,7 +68,7 @@ Reloj fijo para probar: `ATENDE_AGORA=2026-11-09T10:00 ./atende serve ...` y `PO
 Para ver todo el sistema funcionando (WhatsApp real + bot de Telegram) en una computadora con Docker, sin dominio público ni HTTPS. Telegram queda en **modo polling**: el servidor busca los mensajes del bot por su cuenta (`getUpdates`), así que no necesita `setWebhook` ni `TELEGRAM_SEGREDO`.
 
 ```bash
-git clone https://github.com/~~ARCKHÉTDS~~/atende-leads && cd atende-leads
+git clone https://github.com/inematds/atende-leads && cd atende-leads
 # genera .env y dados/negocio.json con secretos nuevos; responde: dominio localhost:8080, modo de Telegram polling
 INSTALAR_SO_GERAR=1 ./instalar-vps.sh
 sudo chown -R 1000:1000 dados
@@ -87,7 +87,7 @@ El bot solo habla con **un** servidor: al iniciarse en polling, desactiva el web
 
 Todos los comandos de abajo usan la ruta **`/opt/atende-leads`** (también el cron de respaldo). Si instalas en otro lugar, cambia la ruta en todos ellos.
 
-0. **Descargar:** `git clone https://github.com/~~ARCKHÉTDS~~/atende-leads /opt/atende-leads && cd /opt/atende-leads`
+0. **Descargar:** `git clone https://github.com/inematds/atende-leads /opt/atende-leads && cd /opt/atende-leads`
 1. **Iniciar:** `cd /opt/atende-leads && ./instalar-vps.sh`. Genera `.env` y `dados/negocio.json` con permisos solo para el dueño (`umask 077`), el token del gerente y los **códigos del equipo** (aleatorios, `secrets.token_urlsafe`), asigna la carpeta `dados/` al uid 1000 (el contenedor **no se ejecuta como root**; si no eres root, intenta `sudo -n chown -R 1000:1000 dados`, y si no lo consigue **se detiene antes de iniciar** y muestra el comando), inicia compose e imprime todo al final. La aplicación escucha solo en `127.0.0.1:8080` y Evolution en `127.0.0.1:8081`.
    - **Volver a ejecutarlo** (cambiar el dominio, conectar Telegram) **no cambia los secretos**: se reutilizan los valores de `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY` y `EVOLUTION_DB_SENHA` que ya están en `.env` (la salida indica cuáles); solo se generan los que faltan (o todavía contienen `troque`). Cambiar la contraseña de Postgres con el volumen ya creado dejaría Evolution fuera de servicio, y un `TELEGRAM_SEGREDO` nuevo haría que el webhook de Telegram devolviera 401. También se conservan el token del gerente y los códigos del equipo.
    - **Sin el instalador** (`docker compose up -d`, o `docker compose --profile evolution up -d` con Evolution en el mismo servidor): `cd /opt/atende-leads && cp .env.exemplo .env && mkdir -p dados && cp exemplos/negocio.json dados/` y **cambia** `token_gestor` y los códigos del equipo en `dados/negocio.json` (códigos de 12+ caracteres), además de `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY` y `EVOLUTION_DB_SENHA` en `.env`; con el perfil `evolution`, agrega también `EVOLUTION_URL=http://evolution-api:8080` (la URL interna; vacía = WhatsApp desactivado); después ejecuta `sudo chown -R 1000:1000 /opt/atende-leads/dados`. Si queda algún secreto de ejemplo, el contenedor se niega a iniciar (punto 2).

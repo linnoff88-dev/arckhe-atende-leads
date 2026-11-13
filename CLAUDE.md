@@ -2,10 +2,10 @@
 
 Atendimento de leads pelo WhatsApp (Evolution) com agente por regras e roteamento ao colaborador livre pelo Telegram. Contrato em `docs/ESPECIFICACAO.md`; testes em `tests/`.
 
-- Conta/autor: `~~ARCKHÉTDS~~ <~~ARCKHÉTDS~~@gmail.com>`; repo público `~~ARCKHÉTDS~~/atende-leads`.
+- Conta/autor: `inematds <inematds@gmail.com>`; repo público `inematds/atende-leads`.
 - Python 3 só biblioteca padrão. Nada de `pip install`.
 - Nenhuma API real em teste ou desenvolvimento; cérebro padrão = regras.
-- Commit que toca `.github/workflows/` → push por SSH (token ~~ARCKHÉTDS~~ sem escopo workflow).
+- Commit que toca `.github/workflows/` → push por SSH (token inematds sem escopo workflow).
 - Guia em `guia/` (PT) + `guia/en/` + `guia/es/`.
 
 ## Self-learning

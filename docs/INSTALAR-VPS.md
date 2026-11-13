@@ -62,7 +62,7 @@ apt-get install -y git nginx certbot python3-certbot-nginx
 ```
 
 ```
-git clone https://github.com/~~ARCKHÉTDS~~/atende-leads /opt/atende-leads && cd /opt/atende-leads
+git clone https://github.com/inematds/atende-leads /opt/atende-leads && cd /opt/atende-leads
 ```
 
 ```

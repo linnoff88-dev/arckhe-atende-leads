@@ -2,7 +2,7 @@
 
 | data | decisão | motivo | alternativa descartada |
 |---|---|---|---|
-| 2026-11-05 | Nome `atende-leads`, repo público ~~ARCKHÉTDS~~ | padrão dos kits de atendimento | — |
+| 2026-11-05 | Nome `atende-leads`, repo público inematds | padrão dos kits de atendimento | — |
 | 2026-11-05 | Prazos: oferta 2 min, alerta 🚨 2 min quente / 5 min normal, lembrete 30 min | sugestão aceita pelo Nei ("pode fazer o projeto completo") | perguntar de novo |
 | 2026-11-05 | Cérebro = regras por padrão; Ollama ou endpoint OpenAI-compatível do cliente opcionais e desligados | produto roda sozinho no cliente; regra dura de não usar API sem autorização | API fixa de um provedor |
 | 2026-11-05 | WhatsApp pela Evolution na v1; Cloud API oficial no roteiro | pedido do Nei | Cloud API já na v1 |

@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>atende-leads — el lead de WhatsApp en manos del colaborador disponible</title>
 <meta name="description" content="Agente de leads en WhatsApp que responde, califica, asigna una puntuación y pasa el lead al colaborador disponible desde hace más tiempo por Telegram, con botones para asumir y llamar. Código abierto, Docker para VPS.">
-<link rel="alternate" hreflang="pt-BR" href="https://~~ARCKHÉTDS~~.github.io/atende-leads/guia/">
-<link rel="alternate" hreflang="en" href="https://~~ARCKHÉTDS~~.github.io/atende-leads/guia/en/">
-<link rel="alternate" hreflang="es" href="https://~~ARCKHÉTDS~~.github.io/atende-leads/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/atende-leads/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/atende-leads/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/atende-leads/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -131,7 +131,7 @@
     <a class="sec" href="#exemplos">Pantallas</a>
     <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
-    <a class="btn" href="https://github.com/~~ARCKHÉTDS~~/atende-leads" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
 
@@ -146,7 +146,7 @@
       <div class="cta">
         <a class="btn" href="#guia">Empezar la guía</a>
         <a class="btn ghost" href="../../videos/">▶ Ver el video</a>
-        <a class="btn ghost" href="https://github.com/~~ARCKHÉTDS~~/atende-leads" target="_blank" rel="noopener">Ver en GitHub</a>
+        <a class="btn ghost" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">Ver en GitHub</a>
       </div>
     </div>
     <figure><img src="../assets/banner-es.jpg" alt="Banner de atende-leads: ningún lead esperando, el agente atiende en WhatsApp y avisa por Telegram a quien está disponible"></figure>
@@ -299,7 +299,7 @@
   <div class="step"><div class="b">1</div><div>
     <h3>Descarga el proyecto</h3>
     <p>Clona el repositorio y entra en la carpeta.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/~~ARCKHÉTDS~~/atende-leads.git</span>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span>
 <span class="k">cd</span> atende-leads</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
@@ -356,14 +356,14 @@
 <section id="deploy"><div class="wrap">
   <span class="chip">Despliegue en la VPS</span>
   <h2>En línea con <span class="amb">Docker</span></h2>
-  <p class="sub">Variables en <a href="https://github.com/~~ARCKHÉTDS~~/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Si faltan las variables de una integración, queda desactivada y el resto funciona (paneles web).</p>
+  <p class="sub">Variables en <a href="https://github.com/inematds/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Si faltan las variables de una integración, queda desactivada y el resto funciona (paneles web).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Iniciar</h3>
     <p><b>Antes de instalar:</b> crea el bot en @BotFather y agrégalo al grupo del equipo. El instalador solicita el token del bot y el ID del grupo (número que empieza con <code>-100</code>). Para encontrar el ID, envía un comando al bot en el grupo, como <code>/start@nome_do_bot</code> (en el modo de privacidad predeterminado, los mensajes comunes no llegan al bot), y abre la dirección de abajo; el <code>chat.id</code> del grupo aparece en la respuesta. Hazlo antes de registrar el webhook (paso 6), porque después <code>getUpdates</code> deja de responder.</p>
 <pre><span class="k">curl</span> <span class="s">"https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates"</span></pre>
     <p>En la VPS, como root (o con <code>sudo</code>), con git, python3 y Docker instalados, clona el proyecto y ejecuta el instalador. Este genera el <code>.env</code> y el <code>dados/negocio.json</code> solo para el propietario (<code>umask 077</code>), el token del administrador y los <b>códigos del equipo</b> (aleatorios), asigna la carpeta <code>dados/</code> al uid 1000 (el contenedor no se ejecuta como root; si no eres root, intenta <code>sudo -n chown</code> y, si no lo consigue, se detiene antes de iniciar y muestra el comando), inicia compose, con o sin Evolution, instala el cron de respaldo e imprime todo al final: guárdalo. <b>Ejecutarlo de nuevo</b> (cambiar el dominio, activar Telegram) no cambia los secretos: reutiliza los que ya están en <code>.env</code> e indica cuáles; solo genera los que faltan (una contraseña nueva de Postgres detendría Evolution, y un <code>TELEGRAM_SEGREDO</code> nuevo haría que el webhook de Telegram respondiera 401). El registro parte del ejemplo (la colaboradora Ana, el "Plan anual", una FAQ de tienda): reemplázalo por tus datos en <code>/gestor</code> → Registros antes de recibir leads. La aplicación escucha solo en <code>127.0.0.1:8080</code> y Evolution en <code>127.0.0.1:8081</code>.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/~~ARCKHÉTDS~~/atende-leads.git</span> /opt/atende-leads
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span> /opt/atende-leads
 <span class="k">cd</span> /opt/atende-leads
 <span class="k">./instalar-vps.sh</span>
 <span class="c"># sem o instalador: cp .env.exemplo .env, troque todos os segredos do .env</span>
@@ -459,7 +459,7 @@ leads.seudominio.com { reverse_proxy 127.0.0.1:8080 }</pre>
   <div class="wrap">
     <div class="pill">Python 3 (biblioteca estándar)</div><div class="pill">SQLite</div><div class="pill">Evolution API</div><div class="pill">Telegram Bot API</div><div class="pill">Docker</div>
     <p style="margin-top:18px">atende-leads · licencia MIT, contenido abierto y gratuito ·
-      <a href="https://github.com/~~ARCKHÉTDS~~/atende-leads">~~ARCKHÉTDS~~/atende-leads</a> ·
+      <a href="https://github.com/inematds/atende-leads">inematds/atende-leads</a> ·
       <a href="https://linnoff88-dev.github.io/arckhe-ai">ARCKHÉ.CLUB</a></p>
   </div>
 </footer>

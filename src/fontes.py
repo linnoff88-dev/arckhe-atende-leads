@@ -45,7 +45,7 @@ MAX_BLOCOS = 12
 MAX_PROPOSTAS = 40
 PROFUNDIDADE = 2
 EXTENSOES = ('txt', 'md', 'csv', 'html', 'htm', 'docx', 'pdf')
-UA_PADRAO = 'https://github.com/~~ARCKHÉTDS~~/atende-leads'
+UA_PADRAO = 'https://github.com/inematds/atende-leads'
 
 
 class Recusado(Exception):
