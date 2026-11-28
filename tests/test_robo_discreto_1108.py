@@ -380,7 +380,7 @@ def test_put_de_equipe_sem_versao_da_409(api):
 
 def test_nome_do_cadastro_so_letras(api):
     assert api.post("/api/equipe/perfil", {"nome": "Ana <script>"}, codigo=CODIGOS["ana"])[0] == 422
-    assert ok(api.post("/api/equipe/perfil", {"nome": "Ana D'Ávila-Souza"}, codigo=CODIGOS["ana"])[0])
+    assert ok(api.post("/api/equipe/perfil", {"nome": "Ana D'ávila-Souza"}, codigo=CODIGOS["ana"])[0])
 
 
 def test_telefone_repetido_com_formato_diferente(api):

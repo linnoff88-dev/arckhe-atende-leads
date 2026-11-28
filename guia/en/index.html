@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>atende-leads — WhatsApp leads assigned to the available team member</title>
 <meta name="description" content="A WhatsApp lead agent that replies, qualifies, scores, and assigns leads via Telegram to the team member who has been available the longest, with buttons to accept and call. Open source, Docker for VPS.">
-<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/atende-leads/guia/">
-<link rel="alternate" hreflang="en" href="https://inematds.github.io/atende-leads/guia/en/">
-<link rel="alternate" hreflang="es" href="https://inematds.github.io/atende-leads/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/atende-leads/guia/">
+<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/atende-leads/guia/en/">
+<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/atende-leads/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -43,8 +43,8 @@
   nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
   nav .brand .emoji{font-size:1.25rem}
   nav .sep{color:var(--mut);opacity:.45}
-  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
-  nav .inema:hover{filter:brightness(1.15)}
+  nav .arckhe{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .arckhe:hover{filter:brightness(1.15)}
   nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
   nav .pro:hover{filter:brightness(1.15)}
   nav .clubpro{display:inline-flex;align-items:center;gap:6px}
@@ -118,9 +118,9 @@
   <a class="brand" href="#top"><span class="emoji">📲</span> atende-leads</a>
   <span class="sep">|</span>
   <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <a class="arckhe" href="https://linnoff88-dev.github.io" target="_blank" rel="noopener">ARCKHé AI.CLUB</a>
     <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+    <a class="pro" href="https://arckhe.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
     <a class="sec" href="#oque">What it is</a>
@@ -131,7 +131,7 @@
     <a class="sec" href="#exemplos">Screens</a>
     <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
-    <a class="btn" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://github.com/linnoff88-dev/atende-leads" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
 
@@ -146,7 +146,7 @@
       <div class="cta">
         <a class="btn" href="#guia">Start the guide</a>
         <a class="btn ghost" href="../../videos/">▶ Watch the video</a>
-        <a class="btn ghost" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn ghost" href="https://github.com/linnoff88-dev/atende-leads" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
     <figure><img src="../assets/banner-en.jpg" alt="atende-leads banner: no lead left waiting; the agent handles WhatsApp and notifies the available team member via Telegram"></figure>
@@ -299,7 +299,7 @@
   <div class="step"><div class="b">1</div><div>
     <h3>Download the project</h3>
     <p>Clone the repository and enter the folder.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/linnoff88-dev/atende-leads.git</span>
 <span class="k">cd</span> atende-leads</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
@@ -356,14 +356,14 @@
 <section id="deploy"><div class="wrap">
   <span class="chip">Deploy on the VPS</span>
   <h2>Live with <span class="amb">Docker</span></h2>
-  <p class="sub">Variables are in <a href="https://github.com/inematds/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. If an integration’s variables are missing, that integration stays off and everything else works (web dashboards).</p>
+  <p class="sub">Variables are in <a href="https://github.com/linnoff88-dev/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. If an integration’s variables are missing, that integration stays off and everything else works (web dashboards).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Set up</h3>
     <p><b>Before installing:</b> create the bot with @BotFather and add it to the team group. The installer asks for the bot token and the group ID (a number that starts with <code>-100</code>). To find the ID, send a command to the bot in the group, such as <code>/start@nome_do_bot</code> (with the default privacy mode, regular messages don’t reach the bot), and open the address below; the group’s <code>chat.id</code> appears in the response. Do this before registering the webhook (step 6), because afterward <code>getUpdates</code> will stop responding.</p>
 <pre><span class="k">curl</span> <span class="s">"https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates"</span></pre>
     <p>On the VPS, as root (or with <code>sudo</code>), with git, python3, and Docker installed, clone the project and run the installer. It creates <code>.env</code> and <code>dados/negocio.json</code> for the owner only (<code>umask 077</code>), the manager token and the team’s <b>codes</b> (random), assigns the <code>dados/</code> folder to uid 1000 (the container doesn’t run as root; without root, it tries <code>sudo -n chown</code> and, if that fails, stops before starting and displays the command), starts compose, with or without Evolution, installs the backup cron job, and prints everything at the end: save it. <b>Running it again</b> (changing the domain, enabling Telegram) doesn’t change the secrets: existing values in <code>.env</code> are reused and the output says which ones; only missing values are generated (a new Postgres password would break Evolution, and a new <code>TELEGRAM_SEGREDO</code> would make the Telegram webhook return 401). The initial records come from the example (the employee Ana, the "Annual plan", a store FAQ): replace them with yours in <code>/gestor</code> → Records before receiving leads. The application listens only on <code>127.0.0.1:8080</code>, and Evolution on <code>127.0.0.1:8081</code>.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span> /opt/atende-leads
+<pre><span class="k">git clone</span> <span class="s">https://github.com/linnoff88-dev/atende-leads.git</span> /opt/atende-leads
 <span class="k">cd</span> /opt/atende-leads
 <span class="k">./instalar-vps.sh</span>
 <span class="c"># without the installer: cp .env.exemplo .env, replace all .env secrets</span>
@@ -459,8 +459,8 @@ leads.seudominio.com { reverse_proxy 127.0.0.1:8080 }</pre>
   <div class="wrap">
     <div class="pill">Python 3 (standard library)</div><div class="pill">SQLite</div><div class="pill">Evolution API</div><div class="pill">Telegram Bot API</div><div class="pill">Docker</div>
     <p style="margin-top:18px">atende-leads · MIT license, open and free content ·
-      <a href="https://github.com/inematds/atende-leads">inematds/atende-leads</a> ·
-      <a href="https://inema.club">INEMA.CLUB</a></p>
+      <a href="https://github.com/linnoff88-dev/atende-leads">linnoff88-dev/atende-leads</a> ·
+      <a href="https://linnoff88-dev.github.io">ARCKHé AI.CLUB</a></p>
   </div>
 </footer>
 

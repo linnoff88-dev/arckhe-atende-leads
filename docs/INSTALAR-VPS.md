@@ -11,7 +11,7 @@ Tempo: cerca de 40 minutos. Custo: a VPS (a partir de uns R$ 30/mês) e, se quis
 
 | Item | Para quê | Onde conseguir |
 |---|---|---|
-| Uma **VPS** com Ubuntu 24.04, 2 GB de RAM ou mais | É o computador na nuvem que fica ligado 24 h | Hetzner, Hostinger, DigitalOcean, Contabo… |
+| Uma **VPS** com Ubuntu 24.04, 2 GB de RAM ou mais | é o computador na nuvem que fica ligado 24 h | Hetzner, Hostinger, DigitalOcean, Contabo… |
 | Um **domínio** (ou subdomínio) | O endereço do sistema | Registro.br, Namecheap, Cloudflare… |
 | Um **bot do Telegram** + um **grupo da equipe** | Onde a equipe recebe os leads | Telegram → @BotFather (passo 3) |
 | Um **número de WhatsApp só para o atendimento** | Onde os clientes falam | Um chip pré-pago com WhatsApp num celular |
@@ -62,7 +62,7 @@ apt-get install -y git nginx certbot python3-certbot-nginx
 ```
 
 ```
-git clone https://github.com/inematds/atende-leads /opt/atende-leads && cd /opt/atende-leads
+git clone https://github.com/linnoff88-dev/atende-leads /opt/atende-leads && cd /opt/atende-leads
 ```
 
 ```

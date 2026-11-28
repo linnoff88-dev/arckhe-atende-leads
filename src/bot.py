@@ -323,7 +323,7 @@ def _mensagem(c, colab, msg, texto, cmd, resto):
         if f and f.get('etapa') == 'nota':
             concluir(c, colab, f, transcrever(c, voz.get('file_id')))
         else:
-            equipe.privado(c, colab, 'Áudio só é usado como nota durante o fechamento.')
+            equipe.privado(c, colab, 'áudio só é usado como nota durante o fechamento.')
         return
     if cmd in ('/livre', '/ocupado', '/fora'):
         r = equipe.mudar_status(c, colab, cmd[1:])

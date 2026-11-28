@@ -161,7 +161,7 @@ def obter(c, sid, colab):
 
 # ---------- conflito → proposta para a base (botão "Atualizar a base") ----------
 PRECO_TXT = re.compile(r'R\$\s?\d[\d.]*(?:,\d{1,2})?')
-PROMO_TXT = re.compile(r'promo[cç][aã]o\s+([A-ZÀ-Ú][\wÀ-ú-]*(?:\s+[A-ZÀ-Ú][\wÀ-ú-]*)?)')
+PROMO_TXT = re.compile(r'promo[cç][aã]o\s+([A-Zà-Ú][\wà-ú-]*(?:\s+[A-Zà-Ú][\wà-ú-]*)?)')
 
 
 def _produto_do_conflito(c, lead, conflito):

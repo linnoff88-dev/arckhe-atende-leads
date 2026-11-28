@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>atende-leads — o lead do WhatsApp na mão do colaborador livre</title>
 <meta name="description" content="Agente de leads no WhatsApp que responde, qualifica, dá nota e passa o lead ao colaborador livre há mais tempo pelo Telegram, com botões para assumir e ligar. Código aberto, Docker para VPS.">
-<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/atende-leads/guia/">
-<link rel="alternate" hreflang="en" href="https://inematds.github.io/atende-leads/guia/en/">
-<link rel="alternate" hreflang="es" href="https://inematds.github.io/atende-leads/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/atende-leads/guia/">
+<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/atende-leads/guia/en/">
+<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/atende-leads/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -43,8 +43,8 @@
   nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
   nav .brand .emoji{font-size:1.25rem}
   nav .sep{color:var(--mut);opacity:.45}
-  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
-  nav .inema:hover{filter:brightness(1.15)}
+  nav .arckhe{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .arckhe:hover{filter:brightness(1.15)}
   nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
   nav .pro:hover{filter:brightness(1.15)}
   nav .clubpro{display:inline-flex;align-items:center;gap:6px}
@@ -118,9 +118,9 @@
   <a class="brand" href="#top"><span class="emoji">📲</span> atende-leads</a>
   <span class="sep">|</span>
   <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <a class="arckhe" href="https://linnoff88-dev.github.io" target="_blank" rel="noopener">ARCKHé AI.CLUB</a>
     <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+    <a class="pro" href="https://arckhe.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
     <a class="sec" href="#oque">O que é</a>
@@ -131,7 +131,7 @@
     <a class="sec" href="#exemplos">Telas</a>
     <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
-    <a class="btn" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://github.com/linnoff88-dev/atende-leads" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
 
@@ -146,7 +146,7 @@
       <div class="cta">
         <a class="btn" href="#guia">Começar o guia</a>
         <a class="btn ghost" href="../videos/">▶ Assistir ao vídeo</a>
-        <a class="btn ghost" href="https://github.com/inematds/atende-leads" target="_blank" rel="noopener">Ver no GitHub</a>
+        <a class="btn ghost" href="https://github.com/linnoff88-dev/atende-leads" target="_blank" rel="noopener">Ver no GitHub</a>
       </div>
     </div>
     <figure><img src="assets/banner.jpg" alt="Banner do atende-leads: nenhum lead esperando, o agente atende no WhatsApp e chama quem está livre pelo Telegram"></figure>
@@ -168,7 +168,7 @@
     <div class="card"><h3>🙋 Chama um humano na hora certa</h3><p>Em 3 casos: o lead pede, o agente percebe que precisa (reclamação, problema, dois "não entendi") ou vê chance de venda (preço, "quero comprar", pagamento).</p></div>
     <div class="card"><h3>📨 Oferta pelo Telegram</h3><p>Vai ao colaborador livre há mais tempo, no privado: nome, telefone, nota, interesse, resumo e últimas mensagens, com os botões ✅ Assumir · ↪️ Passar · 📞 Ligar · 💬 WhatsApp.</p></div>
     <div class="card"><h3>🚨 Alerta no grupo</h3><p>Sem resposta em 2 min, a oferta passa ao próximo. Lead quente sem dono em 2 min (normal em 5) ou ninguém livre: alerta no grupo, e o primeiro que tocar em Assumir leva.</p></div>
-    <div class="card"><h3>📌 Painel fixo da equipe</h3><p>Uma mensagem fixada no grupo, <code>EQUIPE AGORA</code>, mostra quem está livre, atendendo, ocupado ou fora, e a fila de leads esperando. É editada a cada mudança.</p></div>
+    <div class="card"><h3>📌 Painel fixo da equipe</h3><p>Uma mensagem fixada no grupo, <code>EQUIPE AGORA</code>, mostra quem está livre, atendendo, ocupado ou fora, e a fila de leads esperando. é editada a cada mudança.</p></div>
     <div class="card"><h3>✅ Fechamento com resultado</h3><p>Vendeu (valor) · Retornar (data) · Negociando · Sem interesse (motivo) · Inválido, com nota em texto ou áudio (o áudio vira texto só com <code>WHISPER_CMD</code> configurado no <code>.env</code>). O colaborador volta ao fim da fila de livres.</p></div>
   </div>
   <div class="grid g3" style="margin-top:16px">
@@ -294,12 +294,12 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>Teste no seu computador em <span class="amb">5 minutos</span></h2>
-  <p class="sub">Sem WhatsApp e sem Telegram configurados, as integrações ficam desligadas e os painéis web funcionam. É o jeito mais rápido de ver o sistema.</p>
+  <p class="sub">Sem WhatsApp e sem Telegram configurados, as integrações ficam desligadas e os painéis web funcionam. é o jeito mais rápido de ver o sistema.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Baixe o projeto</h3>
     <p>Clone o repositório e entre na pasta.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/linnoff88-dev/atende-leads.git</span>
 <span class="k">cd</span> atende-leads</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
@@ -356,14 +356,14 @@
 <section id="deploy"><div class="wrap">
   <span class="chip">Deploy na VPS</span>
   <h2>No ar com <span class="amb">Docker</span></h2>
-  <p class="sub">Variáveis em <a href="https://github.com/inematds/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Sem as variáveis de uma integração, ela fica desligada e o resto funciona (painéis web).</p>
+  <p class="sub">Variáveis em <a href="https://github.com/linnoff88-dev/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Sem as variáveis de uma integração, ela fica desligada e o resto funciona (painéis web).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Subir</h3>
     <p><b>Antes de instalar:</b> crie o bot no @BotFather e ponha no grupo da equipe. O instalador pede o token do bot e o ID do grupo (número que começa com <code>-100</code>). Para achar o ID, mande no grupo um comando para o bot, como <code>/start@nome_do_bot</code> (no modo de privacidade padrão, mensagem comum não chega ao bot), e abra o endereço abaixo; o <code>chat.id</code> do grupo aparece na resposta. Faça isso antes de registrar o webhook (passo 6), porque depois o <code>getUpdates</code> deixa de responder.</p>
 <pre><span class="k">curl</span> <span class="s">"https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates"</span></pre>
     <p>Na VPS, como root (ou com <code>sudo</code>), com git, python3 e Docker instalados, clone o projeto e rode o instalador. Ele gera o <code>.env</code> e o <code>dados/negocio.json</code> só para o dono (<code>umask 077</code>), o token do gestor e os <b>códigos da equipe</b> (aleatórios), passa a pasta <code>dados/</code> ao uid 1000 (o container não roda como root; sem ser root, tenta <code>sudo -n chown</code> e, se não conseguir, para antes de subir e mostra o comando), sobe o compose, com ou sem a Evolution, instala o cron do backup e imprime tudo no fim: guarde. <b>Rodar de novo</b> (mudar o domínio, ligar o Telegram) não troca os segredos: os que já estão no <code>.env</code> são reaproveitados e a saída diz quais; só os que faltam são gerados (uma senha nova do Postgres derrubaria a Evolution, e um <code>TELEGRAM_SEGREDO</code> novo faria o webhook do Telegram dar 401). O cadastro parte do exemplo (a colaboradora Ana, o "Plano anual", um FAQ de loja): troque pelos seus em <code>/gestor</code> → Cadastros antes de receber leads. A aplicação escuta só em <code>127.0.0.1:8080</code> e a Evolution em <code>127.0.0.1:8081</code>.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/atende-leads.git</span> /opt/atende-leads
+<pre><span class="k">git clone</span> <span class="s">https://github.com/linnoff88-dev/atende-leads.git</span> /opt/atende-leads
 <span class="k">cd</span> /opt/atende-leads
 <span class="k">./instalar-vps.sh</span>
 <span class="c"># sem o instalador: cp .env.exemplo .env, troque todos os segredos do .env</span>
@@ -459,8 +459,8 @@ leads.seudominio.com { reverse_proxy 127.0.0.1:8080 }</pre>
   <div class="wrap">
     <div class="pill">Python 3 (biblioteca padrão)</div><div class="pill">SQLite</div><div class="pill">Evolution API</div><div class="pill">Telegram Bot API</div><div class="pill">Docker</div>
     <p style="margin-top:18px">atende-leads · licença MIT, conteúdo aberto e gratuito ·
-      <a href="https://github.com/inematds/atende-leads">inematds/atende-leads</a> ·
-      <a href="https://inema.club">INEMA.CLUB</a></p>
+      <a href="https://github.com/linnoff88-dev/atende-leads">linnoff88-dev/atende-leads</a> ·
+      <a href="https://linnoff88-dev.github.io">ARCKHé AI.CLUB</a></p>
   </div>
 </footer>
 

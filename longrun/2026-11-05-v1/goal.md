@@ -4,7 +4,7 @@
 - **Tetos:** tempo 6 h · memória 4 G por processo de teste
 
 ## Resultado
-Sistema atende-leads v1 (WhatsApp/Evolution → agente por regras → chamado → colaborador livre pelo Telegram → fechamento), com painéis lead/equipe/gestor, Docker para VPS, guia PT/EN/ES, portal, INEMA.VIBE e explicavideo.
+Sistema atende-leads v1 (WhatsApp/Evolution → agente por regras → chamado → colaborador livre pelo Telegram → fechamento), com painéis lead/equipe/gestor, Docker para VPS, guia PT/EN/ES, portal, ARCKHé AI.VIBE e explicavideo.
 
 ## Critérios de pronto (verificáveis)
 

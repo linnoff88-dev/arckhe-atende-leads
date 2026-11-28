@@ -2,7 +2,7 @@
 
 | data | decisão | motivo | alternativa descartada |
 |---|---|---|---|
-| 2026-11-05 | Nome `atende-leads`, repo público inematds | padrão dos kits de atendimento | — |
+| 2026-11-05 | Nome `atende-leads`, repo público linnoff88-dev | padrão dos kits de atendimento | — |
 | 2026-11-05 | Prazos: oferta 2 min, alerta 🚨 2 min quente / 5 min normal, lembrete 30 min | sugestão aceita pelo Nei ("pode fazer o projeto completo") | perguntar de novo |
 | 2026-11-05 | Cérebro = regras por padrão; Ollama ou endpoint OpenAI-compatível do cliente opcionais e desligados | produto roda sozinho no cliente; regra dura de não usar API sem autorização | API fixa de um provedor |
 | 2026-11-05 | WhatsApp pela Evolution na v1; Cloud API oficial no roteiro | pedido do Nei | Cloud API já na v1 |
@@ -10,7 +10,7 @@
 | 2026-11-05 | Botão Ligar = URL para /ligar/<token> que redireciona para tel:, telefone também em texto | Telegram não aceita tel: em botão inline | botão tel: direto |
 | 2026-11-05 | Grupo nunca recebe telefone nem texto do lead; dados completos só no privado | LGPD | tudo no grupo |
 | 2026-11-05 | Escopo v1 completo; v2 (funil arrastável, responder pelo painel, CRM, metas) e voz automática = roteiro | evitar projeto sem fim | — |
-| 2026-11-05 | Vídeo: explicavideo 16:9 no lives8 (canal dos kits de atendimento), tópico no INEMA.VIBE | pedido do Nei + padrão dos kits 19/10 | lives1 |
+| 2026-11-05 | Vídeo: explicavideo 16:9 no lives8 (canal dos kits de atendimento), tópico no ARCKHé AI.VIBE | pedido do Nei + padrão dos kits 19/10 | lives1 |
 | 2026-11-05 | Termos das regras 5–7/produtos/FAQ casam como trecho (substring) do texto normalizado | §4 diz "contém"; leitura literal | casar só palavra inteira (perderia "parcelas") |
 | 2026-11-05 | `GET /api/saida` e `GET /api/gestor/leads` devolvem array JSON no topo | §15 escreve `[{...}]`; §13 diz "→ lista" | objeto `{"mensagens": [...]}` como no atende-clinica |
 | 2026-11-05 | `/api/painel` `fila[].lead` = primeiro nome do lead (string); `lead_id` vai junto como extra | §8 só nomeia o campo; o painel mostra o primeiro nome | objeto `{id,nome}` |

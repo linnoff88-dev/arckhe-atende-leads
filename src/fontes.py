@@ -45,7 +45,7 @@ MAX_BLOCOS = 12
 MAX_PROPOSTAS = 40
 PROFUNDIDADE = 2
 EXTENSOES = ('txt', 'md', 'csv', 'html', 'htm', 'docx', 'pdf')
-UA_PADRAO = 'https://github.com/inematds/atende-leads'
+UA_PADRAO = 'https://github.com/linnoff88-dev/atende-leads'
 
 
 class Recusado(Exception):
@@ -476,7 +476,7 @@ INSTR = (
     'bastidores (nada de "o site diz", "segundo o documento", "a base diz", "confirmar com a equipe"). O porquê vai '
     'SÓ em "justificativa".\n'
     'Tipos: "info" (campo = endereco|pagamento|entrega|garantia|site|observacoes; resposta = o texto do campo); '
-    '"produto" (produto que NÃO está no cadastro: nome, palavras que o cliente usaria, preco_novo "R$ ..." se houver); '
+    '"produto" (produto que NãO está no cadastro: nome, palavras que o cliente usaria, preco_novo "R$ ..." se houver); '
     '"preco" (produto já cadastrado: produto_id da lista + preco_novo; promocao/validade AAAA-MM-DD se o conteúdo '
     'disser); "horario" (horarios em texto: "seg 08:00-18:00; sab 09:00-13:00; dom fechado", só os dias citados); '
     '"faq" (perguntas que o cliente faria + resposta factual); "correcao" (faq_id existente + resposta nova).\n'
@@ -624,7 +624,7 @@ def _nome_antes(linha, ini):
             break
         nome = novo
     nome = nome.strip(' -–:|•*#')
-    return nome if 2 <= len(nome) <= 60 and re.search(r'[A-Za-zÀ-ú]', nome) else ''
+    return nome if 2 <= len(nome) <= 60 and re.search(r'[A-Za-zà-ú]', nome) else ''
 
 
 def por_regras(c, paginas, link=None):

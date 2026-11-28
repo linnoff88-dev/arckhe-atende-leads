@@ -225,7 +225,7 @@ def perguntar(c, instrucoes, usuario, base_txt=None, papel='principal', formato=
     if t == 'regras' or not ok:
         return None
     k = dict(cfg(c, papel))
-    k['_referer'] = c.url_publica() or 'https://github.com/inematds/atende-leads'
+    k['_referer'] = c.url_publica() or 'https://github.com/linnoff88-dev/atende-leads'
     k['_max_tokens'] = MAX_TOKENS_CURADORIA if papel == 'curadoria' else MAX_TOKENS
     k['_formato'] = formato
     k['_papel'] = papel
