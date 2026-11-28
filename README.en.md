@@ -1,6 +1,6 @@
 # atende-leads
 
-[![Atende Leads](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/atende-leads/guia/en/)
+[![Atende Leads](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/arckhe-atende-leads/guia/en/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,9 +10,9 @@ An open-source system that handles leads coming in through WhatsApp (and your we
 
 ## 📖 User guide
 
-Complete guide (landing page + walkthrough): **https://linnoff88-dev.github.io/atende-leads/guia/en/**
+Complete guide (landing page + walkthrough): **https://linnoff88-dev.github.io/arckhe-atende-leads/guia/en/**
 
-🎬 Explainer video (2 min 37 s, in Portuguese): **https://linnoff88-dev.github.io/atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
+🎬 Explainer video (2 min 37 s, in Portuguese): **https://linnoff88-dev.github.io/arckhe-atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
 
 **WhatsApp lead** handling with an agent that replies, qualifies leads, and forwards them to the **available team member** via Telegram, with all the details and a button to call. Python 3 using only the standard library, SQLite for state, Docker for VPS deployment. Open source, version `1.11.8`.
 
@@ -90,7 +90,7 @@ All commands below use the path **`/opt/atende-leads`** (the backup cron job doe
 0. **Download:** `git clone https://github.com/linnoff88-dev/atende-leads /opt/atende-leads && cd /opt/atende-leads`
 1. **Start:** `cd /opt/atende-leads && ./instalar-vps.sh`. It creates `.env` and `dados/negocio.json` with owner-only permissions (`umask 077`), the manager token, and **team codes** (random, `secrets.token_urlsafe`), assigns the `dados/` folder to uid 1000 (the container **does not run as root**; if you aren’t root, it tries `sudo -n chown -R 1000:1000 dados`, and if that fails, **stops before starting** and shows the command), starts compose, and prints everything at the end.
    - **Running it again** (to change the domain or connect Telegram) **does not replace the secrets**: existing `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY`, and `EVOLUTION_DB_SENHA` values in `.env` are reused (the output lists which ones); only missing values (or ones that still contain `troque`) are generated. Changing the Postgres password after the volume has been created would break Evolution, and a new `TELEGRAM_SEGREDO` would make the Telegram webhook return 401. The manager token and team codes are also preserved.
-   - **Without the installer** (`docker compose up -d`, or `docker compose --profile evolution up -d` with Evolution on the same server): `cd /opt/atende-leads && cp .env.exemplo .env && mkdir -p dados && cp exemplos/negocio.json dados/` and **change** `token_gestor` and the team codes in `dados/negocio.json` (codes must be 12+ characters), as well as `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY`, and `EVOLUTION_DB_SENHA` in `.env`; with the `evolution` profile, also set `EVOLUTION_URL=http://evolution-api:8080` (the internal URL; empty = WhatsApp disabled); then run `sudo chown -R 1000:1000 /opt/atende-leads/dados`. With any example secret, the container refuses to start (item 2).
+   - **Without the installer** (`docker compose up -d`, or `docker compose --profile evolution up -d` with Evolution on the same server): `cd /opt/atende-leads && cp .env.exemplo .env && mkdir -p dados && cp exemplos/negocio.json dados/` and **change** `token_gestor` and the team codes in `dados/negocio.json` (codes must be 12+ characters), as well as `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY`, and `EVOLUTION_DB_SENHA` in `.env`; with the `evolution` profile, also set `EVOLUTION_URL=http://evolution-api:8080` (the internal URL; empty = WhatsApp disabled); then run `sudo chown -R 1000:1000 /opt/arckhe-atende-leads/dados`. With any example secret, the container refuses to start (item 2).
    - **External Evolution** (already running on another server; do not use the `evolution` profile): in `.env`, set `EVOLUTION_URL=https://<sua-evolution>`, `EVOLUTION_API_KEY=<API key dela>`, `EVOLUTION_INSTANCIA=<instância>`; and, in its manager, set the `MESSAGES_UPSERT` webhook to `https://<domínio>/webhook/evolution/<WEBHOOK_SEGREDO>` (item 5). Start only with `docker compose up -d`.
    - **Update an earlier installation:** `cd /opt/atende-leads && git pull && sudo chown -R 1000:1000 dados && docker compose up -d --build` (for versions before 1.0.2, `chown` is required; with the `openai` brain and a key, add `CEREBRO_HOSTS_PERMITIDOS` to `.env`).
 2. **Example secrets cannot go online:** if `negocio.json` still has `token_gestor` = `TROQUE-ESTE-TOKEN` or a code matching one in `exemplos/negocio.json`, or if an integration is enabled with `WEBHOOK_SEGREDO`/`TELEGRAM_SEGREDO` empty, shorter than 16 characters, or containing `troque` (or Evolution is enabled with `EVOLUTION_API_KEY` containing `troque`), the server only allows startup on `127.0.0.1`/`localhost`. On `0.0.0.0` (as in Docker), it **refuses** with the message “run ./instalar-vps.sh or change the secrets.” `.env.exemplo` has empty `EVOLUTION_URL=` and `TELEGRAM_TOKEN=` values: integrations stay disabled until you fill them in. For testing/demos only: `ATENDE_PERMITIR_EXEMPLO=1` in the environment (never in production).
@@ -105,7 +105,7 @@ All commands below use the path **`/opt/atende-leads`** (the backup cron job doe
    `curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<domínio>/webhook/telegram&secret_token=<TELEGRAM_SEGREDO>"`
 7. **Daily backup — a single cron job** (installed in root’s crontab by `instalar-vps.sh`). It runs inside the container and copies data outside the data volume, into a `700` folder with `600` files (the backup contains personal data):
    ```cron
-   0 3 * * * cd /opt/atende-leads && docker compose exec -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz && install -d -m 700 /opt/atende-leads-backups && f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz && mv /opt/atende-leads/dados/.backup-cron.tar.gz $f && chmod 600 $f && find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete # atende-leads-backup
+   0 3 * * * cd /opt/atende-leads && docker compose exec -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz && install -d -m 700 /opt/atende-leads-backups && f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz && mv /opt/arckhe-atende-leads/dados/.backup-cron.tar.gz $f && chmod 600 $f && find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete # atende-leads-backup
    ```
 8. **Restore:** stop the service first (`restaurar` refuses to run while the server is up):
    ```bash

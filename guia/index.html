@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="icon" href="/capa/favicon.ico" type="image/x-icon">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>atende-leads — o lead do WhatsApp na mão do colaborador livre</title>
 <meta name="description" content="Agente de leads no WhatsApp que responde, qualifica, dá nota e passa o lead ao colaborador livre há mais tempo pelo Telegram, com botões para assumir e ligar. Código aberto, Docker para VPS.">
-<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/atende-leads/guia/">
-<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/atende-leads/guia/en/">
-<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/atende-leads/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/">
+<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/en/">
+<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -356,7 +357,7 @@
 <section id="deploy"><div class="wrap">
   <span class="chip">Deploy na VPS</span>
   <h2>No ar com <span class="amb">Docker</span></h2>
-  <p class="sub">Variáveis em <a href="https://github.com/linnoff88-dev/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Sem as variáveis de uma integração, ela fica desligada e o resto funciona (painéis web).</p>
+  <p class="sub">Variáveis em <a href="https://github.com/linnoff88-dev/arckhe-atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. Sem as variáveis de uma integração, ela fica desligada e o resto funciona (painéis web).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Subir</h3>
@@ -369,7 +370,7 @@
 <span class="c"># sem o instalador: cp .env.exemplo .env, troque todos os segredos do .env</span>
 <span class="c"># e o token_gestor e os códigos em dados/negocio.json (12+ caracteres);</span>
 <span class="c"># com a Evolution junto, ponha EVOLUTION_URL=http://evolution-api:8080 no .env;</span>
-<span class="k">sudo chown</span> -R 1000:1000 /opt/atende-leads/dados   <span class="c"># o container roda como uid 1000</span>
+<span class="k">sudo chown</span> -R 1000:1000 /opt/arckhe-atende-leads/dados   <span class="c"># o container roda como uid 1000</span>
 <span class="k">docker compose up -d --build</span>              <span class="c"># ou, com a Evolution junto:</span>
 <span class="k">docker compose --profile evolution up -d --build</span></pre>
   </div></div>
@@ -404,7 +405,7 @@ leads.seudominio.com { reverse_proxy 127.0.0.1:8080 }</pre>
   <div class="step"><div class="b">7</div><div>
     <h3>Backup diário: um único cron</h3>
     <p>O <code>instalar-vps.sh</code> já instala no crontab do root. Roda dentro do container e copia para fora do volume de dados, numa pasta <code>700</code> com arquivos <code>600</code> (o backup tem dados pessoais), guardando 30 dias.</p>
-<pre>0 3 * * * cd /opt/atende-leads &amp;&amp; <span class="k">docker compose exec</span> -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz &amp;&amp; install -d -m 700 /opt/atende-leads-backups &amp;&amp; f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz &amp;&amp; mv /opt/atende-leads/dados/.backup-cron.tar.gz $f &amp;&amp; chmod 600 $f &amp;&amp; find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete <span class="c"># atende-leads-backup</span></pre>
+<pre>0 3 * * * cd /opt/atende-leads &amp;&amp; <span class="k">docker compose exec</span> -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz &amp;&amp; install -d -m 700 /opt/atende-leads-backups &amp;&amp; f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz &amp;&amp; mv /opt/arckhe-atende-leads/dados/.backup-cron.tar.gz $f &amp;&amp; chmod 600 $f &amp;&amp; find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete <span class="c"># atende-leads-backup</span></pre>
   </div></div>
   <div class="step"><div class="b">8</div><div>
     <h3>Restaurar</h3>

@@ -1,6 +1,6 @@
 # atende-leads
 
-[![Atende Leads](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/atende-leads/guia/)
+[![Atende Leads](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-atende-leads/guia/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,9 +10,9 @@ Um sistema de código aberto que atende os leads que chegam pelo WhatsApp (e pel
 
 ## 📖 Guia de uso
 
-Guia completo (landing + passo a passo): **https://linnoff88-dev.github.io/atende-leads/guia/**
+Guia completo (landing + passo a passo): **https://linnoff88-dev.github.io/arckhe-atende-leads/guia/**
 
-🎬 Vídeo explicativo (2 min 37 s): **https://linnoff88-dev.github.io/atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
+🎬 Vídeo explicativo (2 min 37 s): **https://linnoff88-dev.github.io/arckhe-atende-leads/videos/** · [YouTube](https://www.youtube.com/watch?v=-6VKlGAYwKY)
 
 Atendimento de **leads pelo WhatsApp** com um agente que responde, qualifica e passa o lead para o **colaborador livre** pelo Telegram, com todos os dados e um botão para ligar. Python 3 só com biblioteca padrão, estado em SQLite, Docker para VPS. Código aberto, versão `1.11.8`.
 
@@ -100,7 +100,7 @@ Todos os comandos abaixo usam o caminho **`/opt/atende-leads`** (o cron de backu
 0. **Baixar:** `git clone https://github.com/linnoff88-dev/atende-leads /opt/atende-leads && cd /opt/atende-leads`
 1. **Subir:** `cd /opt/atende-leads && ./instalar-vps.sh`. Ele gera `.env` e `dados/negocio.json` com permissão só do dono (`umask 077`), o token do gestor e os **códigos da equipe** (aleatórios, `secrets.token_urlsafe`), dá a pasta `dados/` ao uid 1000 (o container **não roda como root**; sem ser root, tenta `sudo -n chown -R 1000:1000 dados`, e se não conseguir **para antes de subir** e mostra o comando), sobe o compose e imprime tudo no fim. A aplicação escuta só em `127.0.0.1:8080` e a Evolution em `127.0.0.1:8081`.
    - **Rodar de novo** (mudar domínio, ligar o Telegram) **não troca os segredos**: `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY` e `EVOLUTION_DB_SENHA` que já estão no `.env` são reaproveitados (a saída diz quais); só os que faltam (ou ainda têm `troque`) são gerados. Trocar a senha do Postgres com o volume já criado derrubaria a Evolution, e um `TELEGRAM_SEGREDO` novo faria o webhook do Telegram dar 401. O token do gestor e os códigos da equipe também são mantidos.
-   - **Sem o instalador** (`docker compose up -d`, ou `docker compose --profile evolution up -d` com a Evolution no mesmo servidor): `cd /opt/atende-leads && cp .env.exemplo .env && mkdir -p dados && cp exemplos/negocio.json dados/` e **troque** o `token_gestor` e os códigos da equipe em `dados/negocio.json` (códigos com 12+ caracteres) e `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY` e `EVOLUTION_DB_SENHA` no `.env`; com o perfil `evolution`, ponha também `EVOLUTION_URL=http://evolution-api:8080` (a URL interna; vazio = WhatsApp desligado); depois `sudo chown -R 1000:1000 /opt/atende-leads/dados`. Com algum segredo de exemplo o container recusa subir (item 2).
+   - **Sem o instalador** (`docker compose up -d`, ou `docker compose --profile evolution up -d` com a Evolution no mesmo servidor): `cd /opt/atende-leads && cp .env.exemplo .env && mkdir -p dados && cp exemplos/negocio.json dados/` e **troque** o `token_gestor` e os códigos da equipe em `dados/negocio.json` (códigos com 12+ caracteres) e `WEBHOOK_SEGREDO`, `TELEGRAM_SEGREDO`, `EVOLUTION_API_KEY` e `EVOLUTION_DB_SENHA` no `.env`; com o perfil `evolution`, ponha também `EVOLUTION_URL=http://evolution-api:8080` (a URL interna; vazio = WhatsApp desligado); depois `sudo chown -R 1000:1000 /opt/arckhe-atende-leads/dados`. Com algum segredo de exemplo o container recusa subir (item 2).
    - **Evolution externa** (já roda em outro servidor; não use o perfil `evolution`): no `.env`, `EVOLUTION_URL=https://<sua-evolution>`, `EVOLUTION_API_KEY=<API key dela>`, `EVOLUTION_INSTANCIA=<instância>`; e, no manager dela, o webhook `MESSAGES_UPSERT` para `https://<domínio>/webhook/evolution/<WEBHOOK_SEGREDO>` (item 5). Suba só `docker compose up -d`.
    - **Atualizar uma instalação anterior:** `cd /opt/atende-leads && git pull && sudo chown -R 1000:1000 dados && docker compose up -d --build` (de antes da 1.0.2, o `chown` é obrigatório; com o cérebro `openai` e chave, acrescente `CEREBRO_HOSTS_PERMITIDOS` no `.env`).
 2. **Segredos de exemplo não sobem na rede:** se o `negocio.json` ainda tem `token_gestor` = `TROQUE-ESTE-TOKEN` ou algum código igual ao do `exemplos/negocio.json`, ou se uma integração está ligada com `WEBHOOK_SEGREDO`/`TELEGRAM_SEGREDO` vazio, com menos de 16 caracteres ou contendo `troque` (ou a Evolution ligada com `EVOLUTION_API_KEY` contendo `troque`), o servidor só aceita subir em `127.0.0.1`/`localhost`. Em `0.0.0.0` (como no Docker) ele **recusa** com a mensagem "rode ./instalar-vps.sh ou troque os segredos". O `.env.exemplo` vem com `EVOLUTION_URL=` e `TELEGRAM_TOKEN=` vazios: as integrações ficam desligadas até você preencher. Para teste/demonstração apenas: `ATENDE_PERMITIR_EXEMPLO=1` no ambiente (nunca em produção).
@@ -115,7 +115,7 @@ Todos os comandos abaixo usam o caminho **`/opt/atende-leads`** (o cron de backu
    `curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<domínio>/webhook/telegram&secret_token=<TELEGRAM_SEGREDO>"`
 7. **Backup diário — um único cron** (o `instalar-vps.sh` instala no crontab do root). Roda dentro do container e copia para **fora** do volume de dados, numa pasta `700` com arquivos `600` (o backup tem dados pessoais):
    ```cron
-   0 3 * * * cd /opt/atende-leads && docker compose exec -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz && install -d -m 700 /opt/atende-leads-backups && f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz && mv /opt/atende-leads/dados/.backup-cron.tar.gz $f && chmod 600 $f && find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete # atende-leads-backup
+   0 3 * * * cd /opt/atende-leads && docker compose exec -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz && install -d -m 700 /opt/atende-leads-backups && f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz && mv /opt/arckhe-atende-leads/dados/.backup-cron.tar.gz $f && chmod 600 $f && find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete # atende-leads-backup
    ```
 8. **Restaurar:** pare o serviço antes (o `restaurar` recusa com o servidor no ar):
    ```bash

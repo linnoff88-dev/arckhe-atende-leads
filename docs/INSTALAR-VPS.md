@@ -108,7 +108,7 @@ Teste no navegador: `https://<seu-dominio>/` deve abrir o chat. 🎉
 
 ## Passo 6 — Avisar o Telegram onde está o sistema
 
-Troque o token, o domínio e o segredo (o segredo está no arquivo `.env`: rode `grep TELEGRAM_SEGREDO /opt/atende-leads/.env` para ver):
+Troque o token, o domínio e o segredo (o segredo está no arquivo `.env`: rode `grep TELEGRAM_SEGREDO /opt/arckhe-atende-leads/.env` para ver):
 
 ```
 curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<seu-dominio>/webhook/telegram&secret_token=<TELEGRAM_SEGREDO>"
@@ -126,7 +126,7 @@ ssh -L 8081:127.0.0.1:8081 root@<IP-da-VPS>
 
 Deixe essa janela aberta e, no navegador do seu computador, abra **http://localhost:8081/manager**.
 
-1. Ele pede a **chave da API**: na VPS rode `grep EVOLUTION_API_KEY /opt/atende-leads/.env` e cole.
+1. Ele pede a **chave da API**: na VPS rode `grep EVOLUTION_API_KEY /opt/arckhe-atende-leads/.env` e cole.
 2. Crie a instância com o nome **`loja`** (o mesmo do instalador).
 3. Clique para conectar: aparece um **QR Code**.
 4. No celular do número do atendimento: WhatsApp → ⋮ → **Aparelhos conectados** → **Conectar aparelho** → aponte para o QR.
@@ -144,7 +144,7 @@ Pronto: mande "oi" de outro celular para esse número e veja o agente responder.
 1. No painel do gestor → **Base de conhecimento** → **Cérebro**: escolha, por exemplo, *Anthropic* com modelo `claude-sonnet-5-5` e esforço `low`.
 2. Na VPS, coloque a chave no `.env` e reinicie:
 ```
-nano /opt/atende-leads/.env        # preencha a linha CEREBRO_API_KEY=...  (Ctrl+O, Enter, Ctrl+X)
+nano /opt/arckhe-atende-leads/.env        # preencha a linha CEREBRO_API_KEY=...  (Ctrl+O, Enter, Ctrl+X)
 cd /opt/atende-leads && docker compose --profile evolution up -d
 ```
 
@@ -169,5 +169,5 @@ O instalador já deixa um **backup diário** automático em `/opt/atende-leads-b
 | O site não abre | `docker compose ps` — o `atende` precisa estar `healthy`. Se não, veja os logs. |
 | O bot não responde no Telegram | Refaça o passo 6 e confira se o bot é admin do grupo. |
 | O WhatsApp parou | Abra o painel da Evolution (passo 7) e veja se a instância está "open"; senão, leia o QR de novo. |
-| Esqueci o token do gestor | `grep token_gestor /opt/atende-leads/dados/negocio.json` |
+| Esqueci o token do gestor | `grep token_gestor /opt/arckhe-atende-leads/dados/negocio.json` |
 | "Recusa subir com segredos de exemplo" | Rode `./instalar-vps.sh` de novo: ele gera segredos novos e mantém os que já existiam. |

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="/capa/favicon.ico" type="image/x-icon">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>atende-leads — WhatsApp leads assigned to the available team member</title>
 <meta name="description" content="A WhatsApp lead agent that replies, qualifies, scores, and assigns leads via Telegram to the team member who has been available the longest, with buttons to accept and call. Open source, Docker for VPS.">
-<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/atende-leads/guia/">
-<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/atende-leads/guia/en/">
-<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/atende-leads/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/">
+<link rel="alternate" hreflang="en" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/en/">
+<link rel="alternate" hreflang="es" href="https://linnoff88-dev.github.io/arckhe-atende-leads/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -356,7 +357,7 @@
 <section id="deploy"><div class="wrap">
   <span class="chip">Deploy on the VPS</span>
   <h2>Live with <span class="amb">Docker</span></h2>
-  <p class="sub">Variables are in <a href="https://github.com/linnoff88-dev/atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. If an integration’s variables are missing, that integration stays off and everything else works (web dashboards).</p>
+  <p class="sub">Variables are in <a href="https://github.com/linnoff88-dev/arckhe-atende-leads/blob/main/.env.exemplo" target="_blank" rel="noopener"><code>.env.exemplo</code></a>. If an integration’s variables are missing, that integration stays off and everything else works (web dashboards).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Set up</h3>
@@ -369,7 +370,7 @@
 <span class="c"># without the installer: cp .env.exemplo .env, replace all .env secrets</span>
 <span class="c"># and the token_gestor and codes in dados/negocio.json (12+ characters);</span>
 <span class="c"># with Evolution, set EVOLUTION_URL=http://evolution-api:8080 in .env;</span>
-<span class="k">sudo chown</span> -R 1000:1000 /opt/atende-leads/dados   <span class="c"># the container runs as uid 1000</span>
+<span class="k">sudo chown</span> -R 1000:1000 /opt/arckhe-atende-leads/dados   <span class="c"># the container runs as uid 1000</span>
 <span class="k">docker compose up -d --build</span>              <span class="c"># or, with Evolution:</span>
 <span class="k">docker compose --profile evolution up -d --build</span></pre>
   </div></div>
@@ -404,7 +405,7 @@ leads.seudominio.com { reverse_proxy 127.0.0.1:8080 }</pre>
   <div class="step"><div class="b">7</div><div>
     <h3>Daily backup: a single cron job</h3>
     <p><code>instalar-vps.sh</code> already installs it in root’s crontab. It runs inside the container and copies the backup out of the data volume to a <code>700</code> folder with <code>600</code> files (the backup contains personal data), keeping 30 days.</p>
-<pre>0 3 * * * cd /opt/atende-leads &amp;&amp; <span class="k">docker compose exec</span> -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz &amp;&amp; install -d -m 700 /opt/atende-leads-backups &amp;&amp; f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz &amp;&amp; mv /opt/atende-leads/dados/.backup-cron.tar.gz $f &amp;&amp; chmod 600 $f &amp;&amp; find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete <span class="c"># atende-leads-backup</span></pre>
+<pre>0 3 * * * cd /opt/atende-leads &amp;&amp; <span class="k">docker compose exec</span> -T atende ./atende backup --dados /dados --saida /dados/.backup-cron.tar.gz &amp;&amp; install -d -m 700 /opt/atende-leads-backups &amp;&amp; f=/opt/atende-leads-backups/leads-$(date +\%F).tar.gz &amp;&amp; mv /opt/arckhe-atende-leads/dados/.backup-cron.tar.gz $f &amp;&amp; chmod 600 $f &amp;&amp; find /opt/atende-leads-backups -name 'leads-*.tar.gz' -mtime +30 -delete <span class="c"># atende-leads-backup</span></pre>
   </div></div>
   <div class="step"><div class="b">8</div><div>
     <h3>Restore</h3>
